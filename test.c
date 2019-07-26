@@ -2,9 +2,13 @@
 #include "stat.h"
 #include "user.h"
 
-void test(void)
+void test()
 {
+    char buf[10];
+
     test();
+
+    buf[0] = 'a';
 }
 
 int main(int argc, char* argv[])
