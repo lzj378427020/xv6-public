@@ -4,6 +4,6 @@
 
 int main(int argc, char* argv[])
 {
-    printf(1, "hello world!\n");
+    printf(1, "pid = %d\n", getpid());
     exit();
 }
