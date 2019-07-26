@@ -2,15 +2,14 @@
 #include "stat.h"
 #include "user.h"
 
-void test(char c)
+char* test(char c)
 {
-    char buf[10];
+    char buf[10*1024];
 
-    buf[0] = 'c' + c;
-
-    test(buf[0]);
-
+    memset(buf, 0, sizeof(buf));
     buf[0] = 'a';
+
+    return buf;
 }
 
 int main(int argc, char* argv[])
