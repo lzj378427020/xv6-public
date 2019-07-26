@@ -5,7 +5,6 @@
 int main(int argc, char* argv[])
 {
     printf(1, "pid = %d\n", getpid());
-    sleep(1000);
-    printf(1, "sleep 10\n");
+    printf(1, "kill 1 ret = %d\n", kill(1));
     exit();
 }
