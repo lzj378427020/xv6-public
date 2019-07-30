@@ -118,12 +118,21 @@ found:
 extern pde_t *kpgdir;
 
 void
+kernelret(void)
+{
+  release(&ptable.lock);
+
+  panic("hello");
+  exit();
+}
+
+void
 kernelthread(const char* name, void* fn)
 {
   struct proc *p;
 
   p = allocproc();
-  p->context->eip = (uint)fn;
+  p->context->eip = (uint)kernelret;
   p->pgdir = kpgdir;
 
   safestrcpy(p->name, name, sizeof(p->name));
