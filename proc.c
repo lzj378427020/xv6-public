@@ -120,8 +120,6 @@ extern pde_t *kpgdir;
 void
 kernelret(void)
 {
-  release(&ptable.lock);
-
   cprintf("hello in kernel\n");
 
   while (1)
@@ -136,7 +134,7 @@ kernelthread(const char* name, void* fn)
   struct proc *p;
 
   p = allocproc();
-  p->context->eip = (uint)kernelret;
+  *(uint*)(&p->context->eip + 1) = (uint)kernelret;
   p->pgdir = kpgdir;
 
   safestrcpy(p->name, name, sizeof(p->name));
