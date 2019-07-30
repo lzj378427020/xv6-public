@@ -11,6 +11,17 @@ static void mpmain(void)  __attribute__((noreturn));
 extern pde_t *kpgdir;
 extern char end[]; // first address after kernel loaded from ELF file
 
+void
+kernelidle(void)
+{
+  cprintf("hello in kernel\n");
+
+  while (1)
+  {
+    yield();
+  }
+}
+
 // Bootstrap processor starts running C code here.
 // Allocate a real stack and switch to it, first
 // doing some setup required for memory allocator to work.
@@ -34,7 +45,7 @@ main(void)
   startothers();   // start other processors
   kinit2(P2V(4*1024*1024), P2V(PHYSTOP)); // must come after startothers()
   userinit();      // first user process
-  kernelthread("kernel", 0);
+  kernelthread("kernel", kernelidle);
   mpmain();        // finish this processor's setup
 }
 
