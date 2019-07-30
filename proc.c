@@ -122,7 +122,7 @@ kernelret(void)
 {
   release(&ptable.lock);
 
-  cprintf("hello in kernel");
+  cprintf("hello in kernel\n");
 
   while (1)
   {
