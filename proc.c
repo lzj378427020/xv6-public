@@ -126,7 +126,7 @@ kernelret(void)
 
   while (1)
   {
-    
+    yield();
   }
 }
 
