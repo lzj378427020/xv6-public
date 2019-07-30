@@ -123,7 +123,11 @@ kernelret(void)
   release(&ptable.lock);
 
   cprintf("hello in kernel");
-  exit();
+
+  while (1)
+  {
+    
+  }
 }
 
 void
