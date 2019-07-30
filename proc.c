@@ -115,6 +115,26 @@ found:
   return p;
 }
 
+extern pde_t *kpgdir;
+
+void
+kernelthread(const char* name, void* fn)
+{
+  struct proc *p;
+
+  p = allocproc();
+  p->context->eip = (uint)fn;
+  p->pgdir = kpgdir;
+
+  safestrcpy(p->name, name, sizeof(p->name));
+
+  acquire(&ptable.lock);
+
+  p->state = RUNNABLE;
+
+  release(&ptable.lock);
+}
+
 //PAGEBREAK: 32
 // Set up first user process.
 void

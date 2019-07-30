@@ -117,6 +117,7 @@ void            sched(void);
 void            setproc(struct proc*);
 void            sleep(void*, struct spinlock*);
 void            userinit(void);
+void            kernelthread(const char* name, void* fn);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
